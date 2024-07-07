@@ -29,6 +29,15 @@
   display: none;
   align-items: center;
 }
+.navleftlocation select {
+  padding: 5px;
+  border: 1px solid #f86f03;
+  border-radius: 5px;
+  background-color: #fff6f4;
+}
+.mavleftlocation select:focus {
+  outline: none;
+}
 .navleftlocation img {
   width: 40px;
   height: 40px;

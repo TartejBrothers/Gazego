@@ -1,13 +1,13 @@
 import React from "react";
 import "../../styles/storecard.css";
-import burgerimage from "../../images/storecard/burger.jpg";
+
 import star from "../../images/icons/star.png";
 
-export default function StoreCard({ name, description, rating }) {
+export default function StoreCard({ name, description, rating, image }) {
   return (
     <div className="storecard">
       <div className="storecardimg">
-        <img src={burgerimage} alt="Store" />
+        <img src={image} alt="Store" />
       </div>
       <div className="storecardcontent">
         <div className="storecardcontenttop">

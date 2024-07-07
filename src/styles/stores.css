@@ -1,3 +1,4 @@
+
 .storesmain .navleftlocation {
   display: flex;
 }
@@ -24,7 +25,6 @@
   width: 40px;
   height: 40px;
   padding: 8px;
-
   background-color: #fff7f5;
 }
 .storesearch input {
@@ -55,6 +55,8 @@
 .storecardbox {
   width: 30%;
   max-width: 350px;
+  display: flex;
+  flex-direction: column;
 }
 .storebody {
   background-color: #fff7f5;
@@ -68,6 +70,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
+  align-items: stretch;
   gap: 20px;
 }
 @media screen and (max-width: 1000px) {
