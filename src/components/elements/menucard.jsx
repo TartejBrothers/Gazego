@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import star from "../../images/icons/star.png";
 import burgerimage from "../../images/storecard/burger.jpg";
-export default function Menucard({ name, description, rating }) {
+export default function Menucard({ name, description, rating, image, price }) {
   const [cartValue, setCartValue] = useState(0);
   const increaseCartValue = () => {
     setCartValue(cartValue + 1);
@@ -13,11 +13,12 @@ export default function Menucard({ name, description, rating }) {
   return (
     <div className="menucard">
       <div className="menucardimg">
-        <img src={burgerimage} alt="Store" />
+        <img src={image} alt="Store" />
       </div>
       <div className="menucardmain">
         <div className="menucardcontent">
           <h3>{name}</h3>
+          <h2>₹ {price}</h2>
           <p>{description}</p>
           <div className="menucardrating">
             <div className="storecardrating">

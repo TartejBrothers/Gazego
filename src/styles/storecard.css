@@ -2,8 +2,11 @@
   border-radius: 14px;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
+  height: 100%;
 }
 .storecardimg img {
   width: 100%;
@@ -24,6 +27,12 @@
   height: 20px;
   padding: 5px;
   padding-left: 0px;
+}
+.storecardcontent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 .storecardcontenttop {
   padding: 5px 12px;

@@ -18,8 +18,11 @@ export default function Navbar() {
         </div>
         <img src={location} alt="Location" />
         <div className="navbarlocationcontent">
-          <h3>Home</h3>
-          <p>Location</p>
+          <select id="storelocation">
+            <option value="gazebo">Gazebo</option>
+            <option value="northsquare">North Square</option>
+            <option value="acadmeicblock">Academic Block 1</option>
+          </select>
         </div>
       </div>
       <div className="navleft">
@@ -27,7 +30,6 @@ export default function Navbar() {
       </div>
       <div className="navright">
         <img src={account} alt="Account" />
-        <p>User Name</p>
       </div>
     </div>
   );
