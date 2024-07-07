@@ -1,39 +1,35 @@
 import React from "react";
 import "../styles/stores.css";
+import "../styles/menu.css";
 import Navbar from "./navbar";
-import StoreCard from "./elements/storecard";
+import Menucard from "./elements/menucard";
 import searchicon from "../images/icons/search.png";
-import { useNavigate } from "react-router-dom";
-export default function Stores() {
-  const stores = Array.from({ length: 10 }, (_, index) => ({
+export default function Menu() {
+  const menu = Array.from({ length: 10 }, (_, index) => ({
     id: index,
-    name: "Burger King",
+    name: "Chicken Burger",
     description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    rating: "4.5",
+    rating: "4.1",
   }));
-  const navigate = useNavigate();
-  const NavigateToMenu = () => {
-    navigate("/menu");
-  };
   return (
     <div className="storesmain">
       <Navbar />
       <div className="storetop">
-        <h1>Looking For?</h1>
+        <h1>What's In Mind?'</h1>
         <div className="storesearch">
           <select id="searchdropdown">
             <option value="veg">Veg</option>
             <option value="nonveg">Non-Veg</option>
           </select>
-          <input type="text" placeholder="Search for stores" />
+          <input type="text" placeholder="Search for Items" />
           <img src={searchicon} alt="Search" />
         </div>
       </div>
       <div className="storebody">
         <div className="storerow">
-          {stores.map((store) => (
-            <div className="storecardbox" onClick={NavigateToMenu}>
-              <StoreCard
+          {menu.map((store) => (
+            <div className="menucardbox">
+              <Menucard
                 name={store.name}
                 description={store.description}
                 rating={store.rating}

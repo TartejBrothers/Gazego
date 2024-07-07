@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles/storecard.css";
 import burgerimage from "../../images/storecard/burger.jpg";
 import star from "../../images/icons/star.png";
+
 export default function StoreCard({ name, description, rating }) {
   return (
     <div className="storecard">

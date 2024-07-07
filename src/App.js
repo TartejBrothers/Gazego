@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import Stores from "./components/stores";
+import Menucard from "./components/menu";
 function App() {
   return (
     <div className="App">
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/stores" element={<Stores />} />
+          <Route path="/menu" element={<Menucard />} />
         </Routes>
       </Router>
     </div>
