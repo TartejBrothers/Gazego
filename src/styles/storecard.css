@@ -1,8 +1,7 @@
 .storecard {
-  width: 30%;
-  max-width: 350px;
   border-radius: 14px;
   overflow: hidden;
+  width: 100%;
   background-color: #ffffff;
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
 }
@@ -46,7 +45,7 @@
   text-align: left;
 }
 @media screen and (max-width: 1000px) {
-  .storecard {
+  .storecardbox {
     width: 100%;
   }
 }

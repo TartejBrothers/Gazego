@@ -1,0 +1,71 @@
+.menucard {
+  width: 100%;
+  display: flex;
+  box-shadow: 0px 0px 10px 0px #0000001a;
+  background-color: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.menucardbox {
+  width: 100%;
+
+  max-width: 400px;
+}
+.menucardimg {
+  width: 40%;
+}
+.menucardmain {
+  width: 60%;
+}
+.menucardimg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.menucardcontent {
+  padding: 5px 12px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.menucardrating {
+  display: flex;
+}
+.menucardratingleft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  width: fit-content;
+  padding: 2px 8px 2px 3px;
+  border-radius: 14px;
+  font-size: 15px;
+  background-color: #535fe1;
+}
+.menucardratingright {
+  display: flex;
+  align-items: center;
+  background-color: hsl(36, 100%, 55%);
+  width: fit-content;
+  padding: 2px 8px;
+  border-radius: 14px;
+  margin-left: 10px;
+}
+
+.menucardcontent h3 {
+  color: #f86f03;
+  font-size: 20px;
+  font-weight: 500;
+  margin-inline-start: 0px;
+}
+.menucardratingright button {
+  background: none;
+  color: #ffffff;
+  border: none;
+  padding: 1px 10px;
+  font-size: 20px;
+  border-radius: 10px;
+}
