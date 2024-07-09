@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import homeimage from "../images/searchhome.svg";
 export default function Home() {
   const navigate = useNavigate();
-  const NavigateToStores = () => {
-    navigate("/stores");
+
+  const NavigateToLogin = () => {
+    navigate("/login");
   };
+
   return (
     <div className="homemain">
       <Navbar />
@@ -16,7 +18,7 @@ export default function Home() {
           <div className="homeleftcontent">
             <h1>GAZEGO</h1>
             <h3>Gazebo On the Go</h3>
-            <button onClick={NavigateToStores}>Get Started</button>
+            <button onClick={NavigateToLogin}>Get Started</button>
           </div>
         </div>
         <div className="homeright">

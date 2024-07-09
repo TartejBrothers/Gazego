@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import star from "../../images/icons/star.png";
-import burgerimage from "../../images/storecard/burger.jpg";
+
 export default function Menucard({ name, description, rating, image, price }) {
   const [cartValue, setCartValue] = useState(0);
   const increaseCartValue = () => {
