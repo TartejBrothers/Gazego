@@ -1,0 +1,171 @@
+.loginpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+.loginbackleft,
+.loginbackright {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 50%;
+}
+.loginbackleft {
+  background-color: #f9a927;
+  left: 0;
+  opacity: 1;
+}
+.loginbackright {
+  background-color: #ffffff;
+  right: 0;
+}
+.loginmain {
+  display: flex;
+  z-index: 10;
+  height: fit-content;
+  box-shadow: 10px 10px 60px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.loginleft,
+.loginright {
+  width: 50%;
+}
+.loginleft {
+  display: flex;
+  padding: 100px 20px;
+  justify-content: center;
+  background-color: #ffffff;
+  align-items: center;
+}
+.loginleft img {
+  max-height: 500px;
+  width: 100%;
+}
+.loginright {
+  padding: 40px 0px;
+  background-color: #f9a927;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+.loginright h1 {
+  color: #ffffff;
+  font-size: 36px;
+}
+.loginright form {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.forgotpasswordtext {
+  cursor: pointer;
+  user-select: none;
+}
+
+.forgotpasswordtext {
+  text-align: right;
+  width: 90%;
+  font-size: 12px;
+  margin: 0px auto 15px auto;
+  font-size: 12px;
+}
+.createaccount {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.inputdiv {
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.inputdiv img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.loginright form input {
+  border-radius: 20px;
+  border: none;
+
+  width: 70%;
+  padding: 10px 20px;
+}
+.loginright form input:focus {
+  outline: none;
+}
+.loginright form button {
+  border-radius: 20px;
+  border: none;
+  width: 70%;
+  margin: 10px auto 0px auto;
+  padding: 10px 20px;
+  background-color: #344df3;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fac110",endColorstr="#fe9602",GradientType=1);
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 0 0 20px 0 rgba(86, 86, 86, 0.4);
+}
+.successmessage,
+.errormessage {
+  text-align: center !important;
+  color: #fc3908;
+  margin: 15px auto;
+  font-size: 16px !important;
+}
+.createaccount span {
+  color: #344df3;
+  cursor: pointer;
+  font-weight: 600;
+}
+@media screen and (max-width: 1000px) {
+  .loginpage {
+    height: 100dvh;
+    overflow-y: hidden;
+  }
+
+  .loginright,
+  .loginleft {
+    width: 100%;
+  }
+  .loginright {
+    height: 60%;
+  }
+
+  .loginleft {
+    height: 40%;
+  }
+  .loginmain {
+    height: 100dvh;
+    width: 100vw;
+    border-radius: 0px;
+    flex-direction: column;
+  }
+  .logintopright {
+    height: auto;
+    max-width: 30vw;
+  }
+  .loginleft {
+    padding: 20px;
+  }
+  .loginleft img {
+    max-height: 300px;
+  }
+  .loginright {
+    padding: 20px;
+  }
+}
