@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import loginHome from "../images/loginimage.svg";
 import emailimg from "../images/icons/email.png";
+import userlogin from "../images/icons/userlogin.png";
+import phonelogin from "../images/icons/phonelogin.png";
 import passwordimg from "../images/icons/password.png";
 import arrowleft from "../images/icons/arrowleft.png";
 
-const Login = () => {
+const SignUp = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [successful, setSuccessful] = useState(null);
@@ -18,12 +22,15 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = {
+      name: name,
+      phoneNumber: phone,
       email: email,
       password: password,
+      role: "user",
     };
 
     try {
-      const response = await axios.post(`${baseURL}/api/login`, data, {});
+      const response = await axios.post(`${baseURL}/api/user`, data, {});
 
       console.log("Login successful:", response.data);
 
@@ -31,7 +38,7 @@ const Login = () => {
       navigate("/stores");
     } catch (error) {
       console.error("Error logging in:", error);
-      setError("Invalid credentials. Please try again.");
+      setError("Email already exists. Please try again.");
     }
   };
 
@@ -47,20 +54,41 @@ const Login = () => {
           <div
             className="loginnavigator"
             onClick={() => {
-              navigate("/");
+              navigate("/login");
             }}
           >
             <img src={arrowleft} alt="Back" />
-            Home
+            Back
           </div>
           <h1>Welcome!</h1>
           <form onSubmit={handleSubmit}>
+            <div className="inputdiv">
+              <img src={userlogin} alt="Name" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your Full Name"
+                value={name}
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="inputdiv">
+              <img src={phonelogin} alt="Phone" />
+              <input
+                type="number"
+                name="phone"
+                placeholder="Enter your Phone"
+                value={phone}
+                required
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
             <div className="inputdiv">
               <img src={emailimg} alt="Email" />
               <input
                 type="email"
                 name="email"
-                required
                 placeholder="Enter your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -78,12 +106,12 @@ const Login = () => {
               />
             </div>
             <p className="createaccount">
-              Don't have an account?{" "}
-              <span onClick={() => navigate("/signup")}>Sign Up</span>
+              Already have an account?{" "}
+              <span onClick={() => navigate("/login")}>Login</span>
             </p>
             {successful && <p className="successmessage">{successful}</p>}
             {error && <p className="errormessage">{error}</p>}{" "}
-            <button type="submit">Login</button>
+            <button type="submit">Sign Up</button>
           </form>
         </div>
       </div>
@@ -91,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

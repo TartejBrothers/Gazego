@@ -54,6 +54,16 @@
   justify-content: center;
   color: #ffffff;
 }
+.loginnavigator {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  gap: 7px;
+  justify-content: flex-start;
+}
+.loginnavigator img {
+  width: 10px;
+}
 .loginright h1 {
   color: #ffffff;
   font-size: 36px;
@@ -87,7 +97,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 10px 20px;
   border-radius: 20px;
 }
@@ -132,6 +142,7 @@
   cursor: pointer;
   font-weight: 600;
 }
+
 @media screen and (max-width: 1000px) {
   .loginpage {
     height: 100dvh;
