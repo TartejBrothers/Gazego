@@ -3,13 +3,14 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
+  height: fit-content;
+  min-height: 100dvh;
 }
 .loginbackleft,
 .loginbackright {
   position: absolute;
   top: 0;
-  height: 100vh;
+  min-height: 100dvh;
   width: 50%;
 }
 .loginbackleft {
@@ -146,7 +147,11 @@
 @media screen and (max-width: 1000px) {
   .loginpage {
     height: 100dvh;
-    overflow-y: hidden;
+    overflow-y: scroll;
+  }
+  .loginbackleft,
+  .loginbackright {
+    display: none;
   }
 
   .loginright,
@@ -154,11 +159,14 @@
     width: 100%;
   }
   .loginright {
-    height: 60%;
+    height: 70%;
   }
-
+  .loginright h1 {
+    font-size: 20px;
+  }
   .loginleft {
-    height: 40%;
+    padding: 10px;
+    height: 30%;
   }
   .loginmain {
     height: 100dvh;
@@ -170,13 +178,17 @@
     height: auto;
     max-width: 30vw;
   }
-  .loginleft {
-    padding: 20px;
-  }
+
   .loginleft img {
-    max-height: 300px;
+    height: 100%;
   }
   .loginright {
     padding: 20px;
+  }
+  .loginright form input {
+    padding: 6px 20px;
+  }
+  .loginright form {
+    padding: 0px;
   }
 }
