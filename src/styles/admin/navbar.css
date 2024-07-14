@@ -1,0 +1,31 @@
+.navbaradmin {
+  background-color: #f8f9fa;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  padding: 10px 30px;
+  align-items: center;
+}
+.navbaradminleft img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+.navbaradminright {
+  display: flex;
+  gap: 20px;
+}
+.navbaradminright ul {
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  gap: 20px;
+  list-style-type: none;
+  font-size: 18px;
+}
+.navbaradminright ul li {
+  background-color: #ffa41c;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #ffffff;
+}
