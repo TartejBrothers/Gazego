@@ -5,6 +5,8 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Stores from "./components/stores";
 import Menucard from "./components/menu";
+import ViewVendors from "./components/admin/viewvendors";
+import AddVendor from "./components/admin/addvendor";
 function App() {
   return (
     <div className="App">
@@ -15,6 +17,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/stores" element={<Stores />} />
           <Route path="/menu/:storeId" element={<Menucard />} />
+          <Route path="/admin/vendors" element={<ViewVendors />} />
+          <Route path="/admin/addvendor" element={<AddVendor />} />
         </Routes>
       </Router>
     </div>
