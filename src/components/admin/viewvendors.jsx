@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./navbar";
 import "../../styles/admin/vendors.css";
+
 export default function ViewVendors() {
+  const [vendors, setVendors] = useState([]);
+  const baseURL = process.env.REACT_APP_BASE_URL;
+  useEffect(() => {
+    axios
+      .post(`${baseURL}/api/vendors`, {})
+      .then((response) => {
+        setVendors(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the vendors!", error);
+      });
+  }, []);
+
   return (
     <div className="vendormain">
       <Navbar type="view" />
@@ -20,36 +35,20 @@ export default function ViewVendors() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Vendor 1</td>
-              <td>vendor@gmail.com</td>
-              <td>1234567890</td>
-              <td>Lorem, ipsum.</td>
-              <td>Gazebo</td>
-              <td>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Corrupti, rem.
-              </td>
-              <td>
-                <button>Remove Vendor</button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Vendor 2</td>
-              <td>vendor2@gmail.com</td>
-              <td>1234567891</td>
-              <td>Lorem, ipsum.</td>
-              <td>Gazebo</td>
-              <td>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Asperiores, incidunt!
-              </td>
-              <td>
-                <button>Remove Vendor</button>
-              </td>
-            </tr>
+            {vendors.map((vendor, index) => (
+              <tr key={vendor._id}>
+                <td>{index + 1}</td>
+                <td>{vendor.vendorName}</td>
+                <td>{vendor.vendorEmail}</td>
+                <td>{vendor.vendorPhone}</td>
+                <td>{vendor.storeName}</td>
+                <td>{vendor.storeLocation}</td>
+                <td>{vendor.storeDescription}</td>
+                <td>
+                  <button>Remove Vendor</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
