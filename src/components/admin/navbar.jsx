@@ -10,10 +10,13 @@ export default function Navbar({ type }) {
   const NavigatToAdd = () => {
     navigate("/admin/addvendor");
   };
+  const NavigateToHome = () => {
+    navigate("/");
+  };
   return (
     <div className="navbaradmin">
       <div className="navbaradminleft">
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" onClick={NavigateToHome} />
       </div>
       <div className="navbaradminright">
         <ul>
