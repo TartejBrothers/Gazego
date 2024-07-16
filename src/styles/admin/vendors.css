@@ -36,14 +36,7 @@
   border: none;
   border-radius: 20px;
 }
-.vendortop {
-  background-color: #f86f03;
-  padding: 40px 20px 80px 20px;
-}
-.vendortop h2 {
-  color: #ffffff;
-  font-size: 40px;
-}
+
 @media screen and (max-width: 1000px) {
   .vendorbody {
     width: 100vw;
