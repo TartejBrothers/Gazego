@@ -1,3 +1,8 @@
+.vendormain {
+  background-color: #ffbe5d;
+  min-height: 100dvh;
+}
+
 .vendorbody {
   display: flex;
   width: 100%;
@@ -29,6 +34,9 @@
 .vendorbody table tbody tr:nth-child(even) {
   background-color: #f5f5f5;
 }
+.vendorbody table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
 .vendorbody table td button {
   background-color: #f86f03;
   color: #ffffff;
@@ -36,14 +44,7 @@
   border: none;
   border-radius: 20px;
 }
-.vendortop {
-  background-color: #f86f03;
-  padding: 40px 20px 80px 20px;
-}
-.vendortop h2 {
-  color: #ffffff;
-  font-size: 40px;
-}
+
 @media screen and (max-width: 1000px) {
   .vendorbody {
     width: 100vw;
