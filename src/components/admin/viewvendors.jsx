@@ -6,6 +6,7 @@ import "../../styles/admin/vendors.css";
 export default function ViewVendors() {
   const [vendors, setVendors] = useState([]);
   const baseURL = process.env.REACT_APP_BASE_URL;
+
   useEffect(() => {
     axios
       .post(`${baseURL}/api/vendors`, {})
@@ -16,6 +17,21 @@ export default function ViewVendors() {
         console.error("There was an error fetching the vendors!", error);
       });
   }, []);
+
+  const deleteVendor = (vendorEmail) => {
+    axios
+      .delete(`${baseURL}/api/deletevendor`, { data: { vendorEmail } })
+      .then((response) => {
+        if (response.data.message === "Vendor deleted successfully") {
+          setVendors(
+            vendors.filter((vendor) => vendor.vendorEmail !== vendorEmail)
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the vendor!", error);
+      });
+  };
 
   return (
     <div className="vendormain">
@@ -45,7 +61,9 @@ export default function ViewVendors() {
                 <td>{vendor.storeLocation}</td>
                 <td>{vendor.storeDescription}</td>
                 <td>
-                  <button>Remove Vendor</button>
+                  <button onClick={() => deleteVendor(vendor.vendorEmail)}>
+                    Remove Vendor
+                  </button>
                 </td>
               </tr>
             ))}
