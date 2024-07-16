@@ -27,14 +27,16 @@ export default function AddVendor() {
       .post(`${baseURL}/api/addvendor`, vendorData)
       .then((response) => {
         console.log("Vendor added successfully", response);
+        alert("Vendor added successfully");
       })
       .catch((error) => {
         console.error("There was an error adding the vendor!", error);
+        alert("There was an error adding the vendor!");
       });
   };
 
   return (
-    <div className="vendormain">
+    <div className="vendormainadd">
       <Navbar type="add" />
       <div className="vendortop">
         <h2>Add Vendor</h2>
