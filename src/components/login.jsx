@@ -24,13 +24,13 @@ const Login = () => {
 
     try {
       const response = await axios.post(`${baseURL}/api/login`, data, {});
-
-      console.log("Login successful:", response.data);
+      const responseDataRole = response.data.role;
 
       setSuccessful("Login successful");
-      navigate("/stores");
+      if (responseDataRole === "admin") {
+        navigate("/admin/vendors");
+      } else navigate("/stores");
     } catch (error) {
-      console.error("Error logging in:", error);
       setError("Invalid credentials. Please try again.");
     }
   };
