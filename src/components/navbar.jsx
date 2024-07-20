@@ -5,11 +5,19 @@ import account from "../images/icons/account.png";
 import backbutton from "../images/icons/back.png";
 import "../styles/navbar.css";
 import { useNavigate } from "react-router-dom";
-export default function Navbar() {
+
+export default function Navbar({ setLocation }) {
   const navigate = useNavigate();
+
   const handleBack = () => {
     navigate(-1);
   };
+
+  const handleLocationChange = (event) => {
+    const location = event.target.value;
+    setLocation(location);
+  };
+
   return (
     <div className="navbar">
       <div className="navleftlocation">
@@ -18,10 +26,13 @@ export default function Navbar() {
         </div>
         <img src={location} alt="Location" />
         <div className="navbarlocationcontent">
-          <select id="storelocation">
-            <option value="gazebo">Gazebo</option>
-            <option value="northsquare">North Square</option>
-            <option value="acadmeicblock">Academic Block 1</option>
+          <select id="storelocation" onChange={handleLocationChange}>
+            <option value="" selected disabled hidden>
+              Choose Location
+            </option>
+            <option value="Gazego">Gazego</option>
+            <option value="Northsquare">North Square</option>
+            <option value="Academicblock">Academic Block 1</option>
           </select>
         </div>
       </div>
