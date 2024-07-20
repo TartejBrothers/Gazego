@@ -27,7 +27,7 @@ export default function Navbar({ setLocation }) {
         <img src={location} alt="Location" />
         <div className="navbarlocationcontent">
           <select id="storelocation" onChange={handleLocationChange}>
-            <option value="" selected disabled hidden>
+            <option value="" selected disabled>
               Choose Location
             </option>
             <option value="Gazego">Gazego</option>

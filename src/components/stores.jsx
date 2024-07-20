@@ -9,13 +9,13 @@ import axios from "axios";
 
 export default function Stores() {
   const [location, setLocation] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const baseURL = process.env.REACT_APP_BASE_URL;
+  const [stores, setStores] = useState([]);
   const NavigateToMenu = (storeId) => {
     navigate(`/menu/${storeId}`);
   };
-  const baseURL = process.env.REACT_APP_BASE_URL;
-  const [stores, setStores] = useState([]);
-
   const getStores = async (storeLocation) => {
     const data = storeLocation ? { storeLocation } : {};
     try {
@@ -38,31 +38,40 @@ export default function Stores() {
     }
   }, [location]);
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredStores = stores.filter((store) =>
+    store.storeName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="storesmain">
       <Navbar setLocation={setLocation} />
       <div className="storetop">
         <h1>Looking For?</h1>
         <div className="storesearch">
-          <select id="searchdropdown">
-            <option value="veg">Veg</option>
-            <option value="nonveg">Non-Veg</option>
-          </select>
-          <input type="text" placeholder="Search for stores" />
+          <input
+            type="text"
+            placeholder="Search for stores"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
           <img src={searchicon} alt="Search" />
         </div>
       </div>
       <div className="storebody">
         <div className="storerow">
-          <div className="storecardbox" onClick={() => NavigateToMenu("1")}>
+          {/* <div className="storecardbox" onClick={() => NavigateToMenu("1")}>
             <StoreCard
               name="C1"
               description="Quick Snacks on the Racks"
               phone="1234567890"
               image={c1store}
             />
-          </div>
-          {stores.map((store, index) => (
+          </div> */}
+          {filteredStores.map((store, index) => (
             <div
               className="storecardbox"
               key={index}
