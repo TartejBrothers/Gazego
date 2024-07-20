@@ -3,7 +3,6 @@ import "../styles/stores.css";
 import Navbar from "./navbar";
 import StoreCard from "./elements/storecard";
 import searchicon from "../images/icons/search.png";
-import c1store from "../images/storecard/c1store.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -29,14 +28,14 @@ export default function Stores() {
 
   useEffect(() => {
     getStores();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (location) {
       console.log(location);
       getStores(location);
     }
-  }, [location]);
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
