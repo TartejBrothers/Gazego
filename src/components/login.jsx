@@ -25,10 +25,12 @@ const Login = () => {
     try {
       const response = await axios.post(`${baseURL}/api/login`, data, {});
       const responseDataRole = response.data.role;
-
+      const userId = response.data.id;
       setSuccessful("Login successful");
       if (responseDataRole === "admin") {
         navigate("/admin/vendors");
+      } else if (responseDataRole === "vendor") {
+        navigate(`/vendor/menu/${userId}`);
       } else navigate("/stores");
     } catch (error) {
       setError("Invalid credentials. Please try again.");
