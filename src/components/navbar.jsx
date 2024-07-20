@@ -32,7 +32,7 @@ export default function Navbar({ setLocation }) {
             </option>
             <option value="Gazego">Gazego</option>
             <option value="Northsquare">North Square</option>
-            <option value="Academicblock">Academic Block 1</option>
+            <option value="Academicblock1">Academic Block 1</option>
           </select>
         </div>
       </div>

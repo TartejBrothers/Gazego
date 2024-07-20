@@ -10,8 +10,19 @@ export default function AddVendor() {
   const [storeName, setStoreName] = useState("");
   const [storeLocation, setStoreLocation] = useState("");
   const [storeDescription, setStoreDescription] = useState("");
+  const [genPassword, setgenPassword] = useState("");
   const [storeImage, setStoreImage] = useState("");
   const baseURL = process.env.REACT_APP_BASE_URL;
+  const generatePassword = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let password = "";
+    for (let i = 0; i < 8; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      password += characters[randomIndex];
+    }
+    return password;
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const vendorData = {
@@ -23,15 +34,31 @@ export default function AddVendor() {
       storeDescription,
       storeImage,
     };
+    const vendor = {
+      name: vendorName,
+      email: vendorEmail,
+      password: generatePassword(),
+      phoneNumber: vendorPhone,
+      role: "vendor",
+    };
     axios
       .post(`${baseURL}/api/addvendor`, vendorData)
       .then((response) => {
         console.log("Vendor added successfully", response);
-        alert("Vendor added successfully");
       })
       .catch((error) => {
         console.error("There was an error adding the vendor!", error);
         alert("There was an error adding the vendor!");
+      });
+    axios
+      .post(`${baseURL}/api/user`, vendor)
+      .then((response) => {
+        alert("Password is " + vendor.password);
+        setgenPassword(vendor.password);
+        console.log("Vendor added successfully", vendor.password);
+      })
+      .catch((error) => {
+        console.error("There was an error adding the user!", error);
       });
   };
 
@@ -110,8 +137,13 @@ export default function AddVendor() {
           <div className="inputdivvendorsubmit">
             <button type="submit">Add Vendor</button>
           </div>
+          {genPassword && (
+            <div className="passworddiv">
+              <p>Password Generated: {genPassword}</p>
+            </div>
+          )}
         </form>
-      </div>
+      </div>{" "}
     </div>
   );
 }
