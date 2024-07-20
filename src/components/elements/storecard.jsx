@@ -1,9 +1,9 @@
 import React from "react";
 import "../../styles/storecard.css";
 
-import star from "../../images/icons/star.png";
+import phoneImage from "../../images/icons/phone.png";
 
-export default function StoreCard({ name, description, rating, image }) {
+export default function StoreCard({ name, description, phone, image }) {
   return (
     <div className="storecard">
       <div className="storecardimg">
@@ -13,8 +13,8 @@ export default function StoreCard({ name, description, rating, image }) {
         <div className="storecardcontenttop">
           <h3>{name}</h3>
           <div className="storecardrating">
-            <img src={star} alt="Star" />
-            <p>{rating}</p>
+            <img src={phoneImage} alt="phone" />
+            <p>{phone}</p>
           </div>
         </div>
         <div className="storecardcotentbottom">
