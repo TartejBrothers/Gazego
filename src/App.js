@@ -6,6 +6,7 @@ import SignUp from "./components/signup";
 import Stores from "./components/stores";
 import Menucard from "./components/menu";
 import ViewMenu from "./components/vendor/menu";
+import AddMenu from "./components/vendor/addmenu";
 import ViewVendors from "./components/admin/viewvendors";
 import AddVendor from "./components/admin/addvendor";
 function App() {
@@ -17,8 +18,9 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/stores" element={<Stores />} />
-          <Route path="/menu/:storeId" element={<Menucard />} />
+          <Route path="/menu/:userId" element={<Menucard />} />
           <Route path="/vendor/menu/:userId" element={<ViewMenu />} />
+          <Route path="/vendor/addmenu/:userId" element={<AddMenu />} />
           <Route path="/admin/vendors" element={<ViewVendors />} />
           <Route path="/admin/addvendor" element={<AddVendor />} />
         </Routes>

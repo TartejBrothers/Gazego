@@ -19,6 +19,7 @@ export default function Stores() {
     const data = storeLocation ? { storeLocation } : {};
     try {
       const response = await axios.post(`${baseURL}/api/vendors`, data);
+
       setStores(response.data);
       console.log(response.data);
     } catch (error) {
@@ -62,19 +63,11 @@ export default function Stores() {
       </div>
       <div className="storebody">
         <div className="storerow">
-          {/* <div className="storecardbox" onClick={() => NavigateToMenu("1")}>
-            <StoreCard
-              name="C1"
-              description="Quick Snacks on the Racks"
-              phone="1234567890"
-              image={c1store}
-            />
-          </div> */}
           {filteredStores.map((store, index) => (
             <div
               className="storecardbox"
               key={index}
-              onClick={() => NavigateToMenu(store.storeId)}
+              onClick={() => NavigateToMenu(store.vendorId)}
             >
               <StoreCard
                 name={store.storeName}
