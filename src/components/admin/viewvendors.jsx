@@ -16,7 +16,7 @@ export default function ViewVendors() {
       .catch((error) => {
         console.error("There was an error fetching the vendors!", error);
       });
-  }, []);
+  }, [baseURL]); // eslint-disable-next-line react-hooks/exhaustive-deps
 
   const deleteVendor = (vendorEmail) => {
     axios
@@ -46,6 +46,7 @@ export default function ViewVendors() {
               <th>Vendor Phone</th>
               <th>Store Name</th>
               <th>Store Location</th>
+              <th>Store Image</th>
               <th>Store Description</th>
               <th>Action</th>
             </tr>
@@ -53,12 +54,15 @@ export default function ViewVendors() {
           <tbody>
             {vendors.map((vendor, index) => (
               <tr key={vendor._id}>
-                <td>{index + 1}</td>
+                <td>{vendor.vendorId}</td>
                 <td>{vendor.vendorName}</td>
                 <td>{vendor.vendorEmail}</td>
                 <td>{vendor.vendorPhone}</td>
                 <td>{vendor.storeName}</td>
                 <td>{vendor.storeLocation}</td>
+                <td>
+                  <img src={vendor.storeImage} alt="Store" />
+                </td>
                 <td>{vendor.storeDescription}</td>
                 <td>
                   <button onClick={() => deleteVendor(vendor.vendorEmail)}>

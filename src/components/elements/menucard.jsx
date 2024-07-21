@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import star from "../../images/icons/star.png";
 
-export default function Menucard({ name, description, rating, image, price }) {
+export default function Menucard({ name, description, image, price }) {
   const [cartValue, setCartValue] = useState(0);
   const increaseCartValue = () => {
     setCartValue(cartValue + 1);
@@ -21,10 +21,6 @@ export default function Menucard({ name, description, rating, image, price }) {
           <h2>₹ {price}</h2>
           <p>{description}</p>
           <div className="menucardrating">
-            <div className="storecardrating">
-              <img src={star} alt="Star" />
-              <p>{rating}</p>
-            </div>
             <div className="menucardratingright">
               <button onClick={decreaseCartValue}>-</button>
               <p>{cartValue}</p>

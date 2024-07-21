@@ -48,6 +48,9 @@
   .vendorbody {
     width: 100vw;
     overflow-x: scroll;
-    justify-content: flex-start;
+    justify-content: normal;
+  }
+  .vendorbody table {
+    min-width: 100%;
   }
 }
