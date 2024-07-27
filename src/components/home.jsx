@@ -5,9 +5,21 @@ import { useNavigate } from "react-router-dom";
 import homeimage from "../images/searchhome.svg";
 export default function Home() {
   const navigate = useNavigate();
-
+  const userId = localStorage.getItem("userId");
+  const role = localStorage.getItem("role");
   const NavigateToLogin = () => {
-    navigate("/login");
+    if (userId && role === "user") {
+      navigate("/stores");
+    } else if (userId && role === "vendor") {
+      // eslint-disable-next-line
+      {
+        navigate(`/vendor/menu/${userId}`);
+      }
+    } else if (userId && role === "admin") {
+      navigate("/admin/vendors");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (

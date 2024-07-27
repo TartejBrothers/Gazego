@@ -14,7 +14,10 @@ export default function AddVendor() {
   const [storeImage, setStoreImage] = useState("");
 
   const baseURL = process.env.REACT_APP_BASE_URL;
-
+  const handleLocationChange = (event) => {
+    const location = event.target.value;
+    setStoreLocation(location);
+  };
   const generatePassword = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -50,7 +53,7 @@ export default function AddVendor() {
         storeLocation,
         storeDescription,
         storeImage,
-        vendorId: userResponse.data.userId,
+        vendorId: userResponse.data.id,
       };
 
       await axios.post(`${baseURL}/api/addvendor`, vendorData);
@@ -105,14 +108,17 @@ export default function AddVendor() {
               onChange={(event) => setStoreName(event.target.value)}
             />
           </div>
+
           <div className="inputdivvendor">
             <label htmlFor="location">Store Location</label>
-            <input
-              type="text"
-              name="storeLocation"
-              value={storeLocation}
-              onChange={(event) => setStoreLocation(event.target.value)}
-            />
+            <select id="storelocation" onChange={handleLocationChange}>
+              <option value="" selected disabled>
+                Choose Location
+              </option>
+              <option value="Gazebo">Gazebo</option>
+              <option value="Northsquare">North Square</option>
+              <option value="Academicblock1">Academic Block 1</option>
+            </select>
           </div>
           <div className="inputdivvendor">
             <label htmlFor="description">Store Description</label>

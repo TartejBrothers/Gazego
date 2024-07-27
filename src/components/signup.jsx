@@ -8,6 +8,7 @@ import userlogin from "../images/icons/userlogin.png";
 import phonelogin from "../images/icons/phonelogin.png";
 import passwordimg from "../images/icons/password.png";
 import arrowleft from "../images/icons/arrowleft.png";
+import Cookies from "js-cookie";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -33,7 +34,12 @@ const SignUp = () => {
       const response = await axios.post(`${baseURL}/api/user`, data, {});
 
       console.log("Login successful:", response.data);
+      const userId = response.data.id;
+      const token = response.data.token;
+      localStorage.setItem("role", "user");
+      localStorage.setItem("userId", userId);
 
+      Cookies.set("token", token);
       setSuccessful("Login successful");
       navigate("/stores");
     } catch (error) {

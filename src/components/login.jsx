@@ -6,7 +6,7 @@ import loginHome from "../images/loginimage.svg";
 import emailimg from "../images/icons/email.png";
 import passwordimg from "../images/icons/password.png";
 import arrowleft from "../images/icons/arrowleft.png";
-
+import Cookies from "js-cookie";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +26,11 @@ const Login = () => {
       const response = await axios.post(`${baseURL}/api/login`, data, {});
       const responseDataRole = response.data.role;
       const userId = response.data.id;
+      const token = response.data.token;
+      localStorage.setItem("role", responseDataRole);
+      localStorage.setItem("userId", userId);
+
+      Cookies.set("token", token);
       setSuccessful("Login successful");
       if (responseDataRole === "admin") {
         navigate("/admin/vendors");
