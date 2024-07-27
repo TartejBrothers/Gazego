@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "./navbar";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function AddMenu() {
+  const navigate = useNavigate();
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemImage, setItemImage] = useState("");
@@ -19,7 +20,7 @@ export default function AddMenu() {
       itemDescription,
       vendorId: userId,
     };
-    
+
     try {
       const response = await axios.post(`${baseURL}/api/menu`, data);
       if (response.data.message === "Menu added successfully") {
@@ -27,6 +28,8 @@ export default function AddMenu() {
         setItemPrice("");
         setItemImage("");
         setItemDescription("");
+        alert("Menu added successfully");
+        navigate(`/vendor/menu/${userId}`);
       }
     } catch (error) {
       console.error(error);

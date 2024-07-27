@@ -39,7 +39,8 @@
   width: calc(50% - 20px);
 }
 
-.addvendorbody form div input {
+.addvendorbody form div input,
+.addvendorbody form div select {
   padding: 10px 20px;
   border: 1px solid #f86f03;
   border-radius: 20px;

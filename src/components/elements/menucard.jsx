@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import star from "../../images/icons/star.png";
 
 export default function Menucard({ name, description, image, price }) {
   const [cartValue, setCartValue] = useState(0);
