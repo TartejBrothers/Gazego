@@ -30,7 +30,11 @@ export default function Home() {
           <div className="homeleftcontent">
             <h1>GAZEGO</h1>
             <h3>Gazebo On the Go</h3>
-            <button onClick={NavigateToLogin}>Get Started</button>
+            {userId ? (
+              <button onClick={NavigateToLogin}>Go Home</button>
+            ) : (
+              <button onClick={NavigateToLogin}>Get Started</button>
+            )}
           </div>
         </div>
         <div className="homeright">
