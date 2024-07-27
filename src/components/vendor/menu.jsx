@@ -12,11 +12,9 @@ export default function Menu() {
   const getMenu = async () => {
     const data = { vendorId: userId };
 
-    console.log("User Id:", userId);
     try {
       const response = await axios.post(`${baseURL}/api/vendormenu`, data);
       setMenu(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
