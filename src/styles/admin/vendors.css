@@ -5,9 +5,14 @@
 
 .vendorbody {
   display: flex;
-  width: 100%;
+  width: 100vw;
+  overflow-x: scroll;
+
   justify-content: center;
   padding: 10px 20px;
+}
+.vendorbody::-webkit-scrollbar {
+  display: none;
 }
 .vendorbody table {
   margin-top: 20px;
@@ -46,8 +51,6 @@
 
 @media screen and (max-width: 1000px) {
   .vendorbody {
-    width: 100vw;
-    overflow-x: scroll;
     justify-content: normal;
   }
   .vendorbody table {
