@@ -28,7 +28,7 @@ export default function Navbar({ type, userId }) {
       navigate("/login");
     } else {
       try {
-        const response = await axios.get(`${BaseURL}/api/userinfo`, data);
+        const response = await axios.post(`${BaseURL}/api/userinfo`, data);
         const role = response.data.role;
         if (role !== "vendor") {
           navigate("/");
