@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "../styles/stores.css";
 import "../styles/menu.css";
-import Navbar from "./navbar";
+import logo from "../images/icons/logo.svg";
+import account from "../images/icons/account.png";
+import backbutton from "../images/icons/back.png";
 import Menucard from "./elements/menucard";
 import { useParams } from "react-router-dom";
 import searchicon from "../images/icons/search.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   const userId = useParams();
   const baseURL = process.env.REACT_APP_BASE_URL;
   const [menu, setMenu] = useState([]);
@@ -26,7 +35,19 @@ export default function Menu() {
   }, []);
   return (
     <div className="storesmain">
-      <Navbar />
+      <div className="navbar">
+        <div className="navleftlocation">
+          <div className="backbutton">
+            <img src={backbutton} alt="Go Back" onClick={handleBack} />
+          </div>
+        </div>
+        <div className="navleft">
+          <img src={logo} alt="Logo" />
+        </div>
+        <div className="navright">
+          <img src={account} alt="Account" />
+        </div>
+      </div>
       <div className="storetop">
         <h1>What's In Mind?'</h1>
         <div className="storesearch">
@@ -51,8 +72,8 @@ export default function Menu() {
       <div className="addtocart">
         Total Amount: ₹ 0
         <button>
-          <p>Add To Cart</p>
-          <ion-icon name="add-outline"></ion-icon>
+          <p>Proceed To Checkout</p>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
         </button>
       </div>
     </div>
