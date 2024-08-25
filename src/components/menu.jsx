@@ -52,6 +52,7 @@ export default function Menu() {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
+
     const options = {
       key: "rzp_test_YSlbXdk1zNjgVl",
       amount: amount,
@@ -59,16 +60,41 @@ export default function Menu() {
       name: "Gazego",
       description: "Payment for your order",
       image: { logo },
-      handler: function (response) {
-        setResponseId(response.razorpay_payment_id);
-        setResponseState(response);
+      handler: async (razorpayResponse) => {
+        if (razorpayResponse && razorpayResponse.razorpay_payment_id) {
+          setResponseId(razorpayResponse.razorpay_payment_id);
+          setResponseState(razorpayResponse);
+
+          try {
+            const data = {
+              userId: "123456",
+              paymentId: razorpayResponse.razorpay_payment_id,
+              vendorId: userId.userId,
+              items: cart,
+              total: totalAmount,
+            };
+
+            const response = await axios.post(`${baseURL}/api/order`, data);
+            alert("Order placed successfully");
+          } catch (error) {
+            console.error("Error while creating order:", error);
+          }
+        } else {
+          alert("Payment failed");
+        }
       },
       prefill: {
         name: "Gazego",
         email: "gazego@gmail.com",
         contact: "9999999999",
       },
+      modal: {
+        ondismiss: function () {
+          alert("Payment cancelled");
+        },
+      },
     };
+
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
@@ -76,7 +102,7 @@ export default function Menu() {
   const paymentFetch = async () => {
     const orderId = responseState.razorpay_order_id;
     try {
-      const response = await axios.get(`${baseURL}/api/order/${orderId}`);
+      const response = await axios.get(`${baseURL}/api/ordercheck/${orderId}`);
     } catch (error) {
       console.error("Error while fetching order:", error);
     }
