@@ -23,6 +23,7 @@ function App() {
           <Route path="/vendor/addmenu/:userId" element={<AddMenu />} />
           <Route path="/admin/vendors" element={<ViewVendors />} />
           <Route path="/admin/addvendor" element={<AddVendor />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </Router>
     </div>

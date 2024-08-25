@@ -1,12 +1,24 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 
-export default function Menucard({ name, description, image, price }) {
+export default function Menucard({
+  name,
+  description,
+  image,
+  price,
+  onAddToCart,
+}) {
   const [cartValue, setCartValue] = useState(0);
+
   const increaseCartValue = () => {
     setCartValue(cartValue + 1);
+    onAddToCart(1);
   };
+
   const decreaseCartValue = () => {
-    setCartValue(cartValue - 1);
+    if (cartValue > 0) {
+      setCartValue(cartValue - 1);
+      onAddToCart(-1);
+    }
   };
 
   return (
