@@ -172,17 +172,7 @@ export default function Menu() {
   };
 
   const handleCheckout = async () => {
-    const cartData = {
-      userId: customerId,
-      vendorId: userId.userId,
-      items: cart,
-      total: totalAmount,
-    };
-    console.log(cartData);
-
     try {
-      const response = await axios.post(`${baseURL}/api/cart`, cartData);
-      alert("Cart successfully added");
       createRazorpayOrder(totalAmount);
     } catch (error) {
       console.error("Error while checking out:", error);
