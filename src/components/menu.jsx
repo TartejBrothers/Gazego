@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../styles/stores.css";
 import "../styles/menu.css";
 import logo from "../images/icons/logo.svg";
@@ -11,7 +11,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
+  const [customerId, setCustomerId] = useState("");
   const [responseId, setResponseId] = useState("");
+  const navigate = useNavigate();
+  const userId = useParams();
+  const baseURL = process.env.REACT_APP_BASE_URL;
+
+  const [menu, setMenu] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const handleBack = () => {
+    navigate(-1);
+  };
   const [responseState, setResponseState] = useState([]);
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -67,7 +79,7 @@ export default function Menu() {
 
           try {
             const data = {
-              userId: "123456",
+              userId: customerId,
               paymentId: razorpayResponse.razorpay_payment_id,
               vendorId: userId.userId,
               items: cart,
@@ -108,17 +120,26 @@ export default function Menu() {
     }
   };
 
-  const navigate = useNavigate();
-  const userId = useParams();
-  const baseURL = process.env.REACT_APP_BASE_URL;
-
-  const [menu, setMenu] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
+  const checkUser = useCallback(async () => {
+    const data = {};
+    data.id = localStorage.getItem("userId");
+    console.log("Checking user data for userId:", data.id);
+    if (data.id === null) {
+      navigate("/login");
+    } else {
+      try {
+        const response = await axios.post(`${baseURL}/api/userinfo`, data);
+        console.log("User data:", response.data);
+        setCustomerId(response.data.id);
+      } catch (error) {
+        console.error("Error while fetching user data", error);
+        navigate("/");
+      }
+    }
+  }, [navigate, baseURL]); // eslint-disable-next-line
+  useEffect(() => {
+    checkUser();
+  }, [checkUser]); // eslint-disable-next-line
 
   const getMenu = async () => {
     const data = { vendorId: userId.userId };
@@ -152,7 +173,7 @@ export default function Menu() {
 
   const handleCheckout = async () => {
     const cartData = {
-      userId: "123456",
+      userId: customerId,
       vendorId: userId.userId,
       items: cart,
       total: totalAmount,
