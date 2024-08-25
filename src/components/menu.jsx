@@ -12,17 +12,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
   const navigate = useNavigate();
+  const userId = useParams();
+  const baseURL = process.env.REACT_APP_BASE_URL;
+
+  const [menu, setMenu] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   const handleBack = () => {
     navigate(-1);
   };
 
-  const userId = useParams();
-  const baseURL = process.env.REACT_APP_BASE_URL;
-  const [menu, setMenu] = useState([]);
   const getMenu = async () => {
-    const data = {};
-    data.vendorId = userId.userId;
+    const data = { vendorId: userId.userId };
     try {
       const response = await axios.post(`${baseURL}/api/vendormenu/`, data);
       setMenu(response.data);
@@ -30,9 +32,47 @@ export default function Menu() {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getMenu();
   }, []);
+
+  const handleAddToCart = (item, quantity) => {
+    const updatedCart = [...cart];
+    const itemIndex = updatedCart.findIndex(
+      (cartItem) => cartItem.itemId === item._id
+    );
+
+    if (itemIndex > -1) {
+      updatedCart[itemIndex].quantity += quantity;
+    } else {
+      updatedCart.push({ itemId: item._id, quantity });
+    }
+
+    setCart(updatedCart);
+    setTotalAmount(totalAmount + item.itemPrice * quantity);
+  };
+
+  const handleCheckout = async () => {
+    const cartData = {
+      userId: "123456",
+      vendorId: userId.userId,
+      items: cart,
+      total: totalAmount,
+    };
+    console.log(cartData);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:5038/api/cart`,
+        cartData
+      );
+      alert("Cart successfully added");
+    } catch (error) {
+      console.error("Error while checking out:", error);
+    }
+  };
+
   return (
     <div className="storesmain">
       <div className="navbar">
@@ -58,20 +98,21 @@ export default function Menu() {
       <div className="storebody">
         <div className="storerow">
           {menu.map((menuitem) => (
-            <div className="menucardbox">
+            <div className="menucardbox" key={menuitem.itemId}>
               <Menucard
                 name={menuitem.itemName}
                 description={menuitem.itemDescription}
                 image={menuitem.itemImage}
                 price={menuitem.itemPrice}
+                onAddToCart={(quantity) => handleAddToCart(menuitem, quantity)}
               />
             </div>
           ))}
         </div>
       </div>
       <div className="addtocart">
-        Total Amount: ₹ 0
-        <button>
+        Total Amount: ₹ {totalAmount}
+        <button onClick={handleCheckout}>
           <p>Proceed To Checkout</p>
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </button>
