@@ -11,6 +11,77 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
+  const [responseId, setResponseId] = useState("");
+  const [responseState, setResponseState] = useState([]);
+  const loadScript = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+  const createRazorpayOrder = async (amount) => {
+    let data = JSON.stringify({
+      amount: amount * 100,
+      current: "INR",
+    });
+    try {
+      const response = await axios.post(`${baseURL}/api/order/create`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("Order created:", response.data);
+      handleRazorpayScreen(response.data.amount);
+    } catch (error) {
+      console.error("Error while creating order:", error);
+    }
+  };
+
+  const handleRazorpayScreen = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+    const options = {
+      key: "rzp_test_YSlbXdk1zNjgVl",
+      amount: amount,
+      currency: "INR",
+      name: "Gazego",
+      description: "Payment for your order",
+      image: { logo },
+      handler: function (response) {
+        setResponseId(response.razorpay_payment_id);
+        setResponseState(response);
+      },
+      prefill: {
+        name: "Gazego",
+        email: "gazego@gmail.com",
+        contact: "9999999999",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
+  const paymentFetch = async () => {
+    const orderId = responseState.razorpay_order_id;
+    try {
+      const response = await axios.get(`${baseURL}/api/order/${orderId}`);
+    } catch (error) {
+      console.error("Error while fetching order:", error);
+    }
+  };
+
   const navigate = useNavigate();
   const userId = useParams();
   const baseURL = process.env.REACT_APP_BASE_URL;
@@ -63,11 +134,9 @@ export default function Menu() {
     console.log(cartData);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5038/api/cart`,
-        cartData
-      );
+      const response = await axios.post(`${baseURL}/api/cart`, cartData);
       alert("Cart successfully added");
+      createRazorpayOrder(totalAmount);
     } catch (error) {
       console.error("Error while checking out:", error);
     }
