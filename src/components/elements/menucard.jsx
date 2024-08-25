@@ -6,7 +6,11 @@ export default function Menucard({ name, description, image, price }) {
     setCartValue(cartValue + 1);
   };
   const decreaseCartValue = () => {
-    setCartValue(cartValue - 1);
+    if (cartValue === 0) {
+      return;
+    } else {
+      setCartValue(cartValue - 1);
+    }
   };
 
   return (

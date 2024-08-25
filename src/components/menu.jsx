@@ -23,7 +23,7 @@ export default function Menu() {
   };
   useEffect(() => {
     getMenu();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="storesmain">
       <Navbar />
@@ -47,6 +47,13 @@ export default function Menu() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="addtocart">
+        Total Amount: ₹ 0
+        <button>
+          <p>Add To Cart</p>
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
       </div>
     </div>
   );
