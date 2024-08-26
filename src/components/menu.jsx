@@ -66,7 +66,7 @@ export default function Menu() {
     }
 
     const options = {
-      key: "rzp_test_YSlbXdk1zNjgVl",
+      key: "rzp_live_MyBi9zAGMCPP9v",
       amount: amount,
       currency: "INR",
       name: "Gazego",
@@ -109,15 +109,6 @@ export default function Menu() {
 
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
-  };
-
-  const paymentFetch = async () => {
-    const orderId = responseState.razorpay_order_id;
-    try {
-      const response = await axios.get(`${baseURL}/api/ordercheck/${orderId}`);
-    } catch (error) {
-      console.error("Error while fetching order:", error);
-    }
   };
 
   const checkUser = useCallback(async () => {
