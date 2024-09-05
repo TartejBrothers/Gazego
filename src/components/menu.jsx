@@ -66,7 +66,7 @@ export default function Menu() {
     }
 
     const options = {
-      key: "rzp_live_MyBi9zAGMCPP9v",
+      key: "rzp_test_ZnFxmOszVGykuQ",
       amount: amount,
       currency: "INR",
       name: "Gazego",
@@ -88,6 +88,7 @@ export default function Menu() {
 
             const response = await axios.post(`${baseURL}/api/order`, data);
             alert("Order placed successfully");
+            navigate("/orders/" + customerId);
           } catch (error) {
             console.error("Error while creating order:", error);
           }
@@ -98,7 +99,6 @@ export default function Menu() {
       prefill: {
         name: "Gazego",
         email: "gazego@gmail.com",
-        contact: "9999999999",
       },
       modal: {
         ondismiss: function () {
@@ -169,7 +169,25 @@ export default function Menu() {
       console.error("Error while checking out:", error);
     }
   };
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredMenu, setFilteredMenu] = useState(menu);
 
+  const handleSearchChange = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query === "") {
+      setFilteredMenu(menu);
+    } else {
+      const filtered = menu.filter((menuitem) =>
+        menuitem.itemName.toLowerCase().includes(query)
+      );
+      setFilteredMenu(filtered);
+    }
+  };
+  useEffect(() => {
+    setFilteredMenu(menu);
+  }, [menu]);
   return (
     <div className="storesmain">
       <div className="navbar">
@@ -186,15 +204,20 @@ export default function Menu() {
         </div>
       </div>
       <div className="storetop">
-        <h1>What's In Mind?'</h1>
+        <h1>What's In Mind?</h1>
         <div className="storesearch">
-          <input type="text" placeholder="Search for Items" />
+          <input
+            type="text"
+            placeholder="Search for Items"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
           <img src={searchicon} alt="Search" />
         </div>
       </div>
       <div className="storebody">
         <div className="storerow">
-          {menu.map((menuitem) => (
+          {filteredMenu.map((menuitem) => (
             <div className="menucardbox" key={menuitem.itemId}>
               <Menucard
                 name={menuitem.itemName}
