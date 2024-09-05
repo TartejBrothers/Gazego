@@ -9,6 +9,7 @@ import ViewMenu from "./components/vendor/menu";
 import AddMenu from "./components/vendor/addmenu";
 import ViewVendors from "./components/admin/viewvendors";
 import AddVendor from "./components/admin/addvendor";
+import Orders from "./components/orders";
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
           <Route path="/vendor/addmenu/:userId" element={<AddMenu />} />
           <Route path="/admin/vendors" element={<ViewVendors />} />
           <Route path="/admin/addvendor" element={<AddVendor />} />
+          <Route path="/orders/:userId" element={<Orders />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </Router>
