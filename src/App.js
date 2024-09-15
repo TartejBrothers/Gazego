@@ -8,8 +8,10 @@ import Menucard from "./components/menu";
 import ViewMenu from "./components/vendor/menu";
 import AddMenu from "./components/vendor/addmenu";
 import ViewVendors from "./components/admin/viewvendors";
+import ViewOrders from "./components/vendor/vieworders";
 import AddVendor from "./components/admin/addvendor";
 import Orders from "./components/orders";
+
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,7 @@ function App() {
           <Route path="/stores" element={<Stores />} />
           <Route path="/menu/:userId" element={<Menucard />} />
           <Route path="/vendor/menu/:userId" element={<ViewMenu />} />
+          <Route path="/vendor/orders/:userId" element={<ViewOrders />} />
           <Route path="/vendor/addmenu/:userId" element={<AddMenu />} />
           <Route path="/admin/vendors" element={<ViewVendors />} />
           <Route path="/admin/addvendor" element={<AddVendor />} />

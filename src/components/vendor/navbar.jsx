@@ -8,18 +8,20 @@ export default function Navbar({ type, userId }) {
   const navigate = useNavigate();
 
   const navigateToViewMenu = () => {
-    console.log("Navigating to View Menu for userId:", userId);
     navigate(`/vendor/menu/${userId}`);
   };
 
   const navigateToAdd = () => {
-    console.log("Navigating to Add Menu Item for userId:", userId);
     navigate(`/vendor/addmenu/${userId}`);
   };
 
   const navigateToHome = () => {
     navigate("/");
   };
+  const navigateToViewOrders = () => {
+    navigate(`/vendor/orders/${userId}`);
+  };
+
   const checkUser = useCallback(async () => {
     const data = {};
     data.id = localStorage.getItem("userId");
@@ -50,6 +52,7 @@ export default function Navbar({ type, userId }) {
       </div>
       <div className="navbaradminright">
         <ul>
+          <li onClick={navigateToViewOrders}>View Orders</li>
           {type === "add" ? (
             <li onClick={navigateToViewMenu}>View Menu</li>
           ) : (
