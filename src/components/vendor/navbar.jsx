@@ -3,6 +3,7 @@ import logo from "../../images/icons/logo.svg";
 import "../../styles/admin/navbar.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Gripline from "../common/gripline";
 export default function Navbar({ type, userId }) {
   const BaseURL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
@@ -52,7 +53,6 @@ export default function Navbar({ type, userId }) {
       </div>
       <div className="navbaradminright">
         <ul>
-          <li onClick={navigateToViewOrders}>View Orders</li>
           {type === "add" ? (
             <li onClick={navigateToViewMenu}>View Menu</li>
           ) : (
@@ -60,6 +60,7 @@ export default function Navbar({ type, userId }) {
           )}
         </ul>
       </div>
+      <Gripline />
     </div>
   );
 }
