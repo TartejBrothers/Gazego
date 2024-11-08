@@ -5,7 +5,7 @@ import axios from "axios";
 export default function ViewOrders() {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
-  const userId = useParams();
+  const { userId } = useParams();
   const baseURL = process.env.REACT_APP_BASE_URL;
   const fetchOrders = async () => {
     try {
@@ -24,7 +24,7 @@ export default function ViewOrders() {
 
   return (
     <div className="vendormain">
-      <Navbar type="add" userId={userId} />
+      <Navbar type="add" vendorId={userId} />
       <div className="vendortop">
         <h2>Orders</h2>
       </div>

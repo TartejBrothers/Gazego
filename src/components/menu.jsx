@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import searchicon from "../images/icons/search.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Gripline from "./common/gripline";
 
 export default function Menu() {
   const [customerId, setCustomerId] = useState("");
@@ -201,6 +202,7 @@ export default function Menu() {
         </div>
         <div className="navright">
           <img src={account} alt="Account" />
+          <Gripline />
         </div>
       </div>
       <div className="storetop">

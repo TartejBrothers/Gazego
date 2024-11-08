@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
 import "../../styles/common/gripline.css";
 function Dropdown({ showDropdown }) {
   const BaseURL = process.env.REACT_APP_BASE_URL;
@@ -45,6 +46,34 @@ function Dropdown({ showDropdown }) {
       }`}
     >
       <ul>
+        {userState === "user" && (
+          <li onClick={() => navigate(`/stores`)}>
+            <IoMdHome />
+            Home
+          </li>
+        )}
+        {userState === "venor" && (
+          <li onClick={() => navigate(`/vendor/menu`)}>
+            <IoMdHome />
+            Home
+          </li>
+        )}
+        {userState === "admin" && (
+          <li onClick={() => navigate(`/admin/vendors`)}>
+            <IoMdHome />
+            Home
+          </li>
+        )}
+        {userState === "user" && (
+          <li onClick={() => navigate(`/orders/${userId}`)}>
+            <FaShoppingCart /> Orders
+          </li>
+        )}
+        {userState === "vendor" && (
+          <li onClick={() => navigate(`/vendor/orders/${userId}`)}>
+            <FaShoppingCart /> Orders
+          </li>
+        )}
         <li
           onClick={() => {
             document.cookie = null;
@@ -56,16 +85,6 @@ function Dropdown({ showDropdown }) {
           <IoIosLogOut />
           Logout
         </li>
-        {userState === "user" && (
-          <li onClick={() => navigate(`/orders/${userId}`)}>
-            <FaShoppingCart /> Orders
-          </li>
-        )}
-        {userState === "vendor" && (
-          <li onClick={() => navigate(`/orders/${userId}`)}>
-            <FaShoppingCart /> Orders
-          </li>
-        )}
       </ul>
     </div>
   );
