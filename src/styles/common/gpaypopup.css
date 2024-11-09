@@ -1,0 +1,85 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000000;
+}
+.gpaypopup {
+  background-color: #ffffff;
+  border-radius: 10px;
+  max-width: 90%;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.gpaypopup h2 {
+  font-size: 20px;
+  color: #f86f03;
+}
+.gpaypopup a {
+  text-decoration: none;
+}
+.gpaypopup a button {
+  background-color: #42aa37;
+  border: none;
+  font-weight: 500;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  gap: 5px;
+
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+}
+.agreetosend {
+  display: flex;
+  align-items: start;
+}
+.agreetosend input {
+  margin-top: 3.5px;
+  margin-right: 5px;
+}
+.agreetosend label {
+  text-align: left;
+}
+.gpaypopup button[type="submit"] {
+  background-color: #f86f03;
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 10px;
+  gap: 5px;
+  margin-top: 10px;
+}
+.amounttotalpopup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+.amounttotalpopup p:nth-child(2) {
+  color: #f86f03;
+}
+
+.crossiconcorner {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.crossiconcorner svg {
+  height: 30px;
+  width: 30px;
+  color: #f86f03;
+}
