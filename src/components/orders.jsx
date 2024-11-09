@@ -4,6 +4,7 @@ import "../styles/order.css";
 import account from "../images/icons/account.png";
 import backbutton from "../images/icons/back.png";
 import { useNavigate, useParams } from "react-router-dom";
+import Gripline from "./common/gripline";
 import axios from "axios";
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -42,6 +43,7 @@ export default function Orders() {
         </div>
         <div className="navright">
           <img src={account} alt="Account" />
+          <Gripline />
         </div>
       </div>
       <div className="storetop ordertopheader">

@@ -12,6 +12,7 @@ export default function AddVendor() {
   const [storeDescription, setStoreDescription] = useState("");
   const [genPassword, setGenPassword] = useState("");
   const [storeImage, setStoreImage] = useState("");
+  const [vendorGPay, setvendorGPay] = useState("");
 
   const baseURL = process.env.REACT_APP_BASE_URL;
   const handleLocationChange = (event) => {
@@ -54,6 +55,7 @@ export default function AddVendor() {
         storeDescription,
         storeImage,
         vendorId: userResponse.data.id,
+        vendorGPay,
       };
 
       await axios.post(`${baseURL}/api/addvendor`, vendorData);
@@ -129,16 +131,25 @@ export default function AddVendor() {
               onChange={(event) => setStoreDescription(event.target.value)}
             />
           </div>
-          <div className="inputdivvendorfull">
+          <div className="inputdivvendor">
             <label htmlFor="image">Store Image URL</label>
             <input
               type="text"
-              name="storeImage"
+              name="image"
               value={storeImage}
               onChange={(event) => setStoreImage(event.target.value)}
             />
           </div>
-          <br />
+          <div className="inputdivvendor">
+            <label htmlFor="vendorGPay">Google Pay QR Code</label>
+            <input
+              type="text"
+              name="vendorGPay"
+              value={vendorGPay}
+              onChange={(event) => setvendorGPay(event.target.value)}
+            />
+          </div>
+
           <div className="inputdivvendorsubmit">
             <button type="submit">Add Vendor</button>
           </div>

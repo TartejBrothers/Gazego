@@ -1,30 +1,35 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import logo from "../../images/icons/logo.svg";
 import "../../styles/admin/navbar.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-export default function Navbar({ type, userId }) {
+import Gripline from "../common/gripline";
+export default function Navbar({ type, vendorId }) {
+  const [defaultId, setDefaultId] = useState("");
   const BaseURL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
 
   const navigateToViewMenu = () => {
-    navigate(`/vendor/menu/${userId}`);
+    console.log("vendorId", vendorId);
+    navigate(`/vendor/menu/${defaultId}`);
   };
 
   const navigateToAdd = () => {
-    navigate(`/vendor/addmenu/${userId}`);
+    console.log("vendorId", vendorId);
+    navigate(`/vendor/addmenu/${defaultId}`);
   };
 
   const navigateToHome = () => {
     navigate("/");
   };
   const navigateToViewOrders = () => {
-    navigate(`/vendor/orders/${userId}`);
+    navigate(`/vendor/orders/${defaultId}`);
   };
 
   const checkUser = useCallback(async () => {
     const data = {};
     data.id = localStorage.getItem("userId");
+    setDefaultId(data.id);
     console.log("Checking user data for userId:", data.id);
     if (data.id === null) {
       navigate("/login");
@@ -52,7 +57,6 @@ export default function Navbar({ type, userId }) {
       </div>
       <div className="navbaradminright">
         <ul>
-          <li onClick={navigateToViewOrders}>View Orders</li>
           {type === "add" ? (
             <li onClick={navigateToViewMenu}>View Menu</li>
           ) : (
@@ -60,6 +64,7 @@ export default function Navbar({ type, userId }) {
           )}
         </ul>
       </div>
+      <Gripline />
     </div>
   );
 }

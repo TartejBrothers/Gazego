@@ -48,6 +48,7 @@ export default function ViewVendors() {
               <th>Store Location</th>
               <th>Store Image</th>
               <th>Store Description</th>
+              <th>Vendor GPay</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -64,6 +65,7 @@ export default function ViewVendors() {
                   <img src={vendor.storeImage} alt="Store" />
                 </td>
                 <td>{vendor.storeDescription}</td>
+                <td>{vendor.vendorGPay}</td>
                 <td>
                   <button onClick={() => deleteVendor(vendor.vendorEmail)}>
                     Remove Vendor

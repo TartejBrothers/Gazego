@@ -38,7 +38,7 @@ export default function AddMenu() {
 
   return (
     <div className="vendormain">
-      <Navbar type="add" userId={userId} />
+      <Navbar type="add" vendorId={userId} />
       <div className="vendortop">
         <h2>Add Menu Item</h2>
       </div>

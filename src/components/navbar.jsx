@@ -5,6 +5,7 @@ import account from "../images/icons/account.png";
 import backbutton from "../images/icons/back.png";
 import "../styles/navbar.css";
 import { useNavigate } from "react-router-dom";
+import Gripline from "./common/gripline";
 
 export default function Navbar({ setLocation }) {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ export default function Navbar({ setLocation }) {
       </div>
       <div className="navright">
         <img src={account} alt="Account" />
+        <Gripline />
       </div>
     </div>
   );

@@ -9,10 +9,19 @@ import { useParams } from "react-router-dom";
 import searchicon from "../images/icons/search.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Gripline from "./common/gripline";
+import GpayPopup from "./elements/gpaypopup";
 
 export default function Menu() {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const togglePopup = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
   const [customerId, setCustomerId] = useState("");
   const [responseId, setResponseId] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [vendorResponse, setVendorResponse] = useState("");
+  const [gpayLink, setGpayLink] = useState("");
   const navigate = useNavigate();
   const userId = useParams();
   const baseURL = process.env.REACT_APP_BASE_URL;
@@ -53,6 +62,22 @@ export default function Menu() {
       handleRazorpayScreen(response.data.amount);
     } catch (error) {
       console.error("Error while creating order:", error);
+    }
+  };
+  const getVendor = async () => {
+    try {
+      axios
+        .get(`${baseURL}/api/vendor/${userId.userId}`)
+        .then((response) => {
+          setVendorResponse(response.data);
+          setPhoneNumber(response.data.vendorPhone);
+          setGpayLink(response.data.vendorGPay);
+        })
+        .catch((error) => {
+          console.error("Error while fetching vendor data", error);
+        });
+    } catch (error) {
+      console.error("Error while fetching vendor data", error);
     }
   };
 
@@ -144,6 +169,7 @@ export default function Menu() {
 
   useEffect(() => {
     getMenu();
+    getVendor();
   }, []);
 
   const handleAddToCart = (item, quantity) => {
@@ -190,6 +216,13 @@ export default function Menu() {
   }, [menu]);
   return (
     <div className="storesmain">
+      <GpayPopup
+        isVisible={isPopupVisible}
+        onClose={togglePopup}
+        amount={totalAmount}
+        phoneNumber={phoneNumber}
+        gpay={gpayLink}
+      />
       <div className="navbar">
         <div className="navleftlocation">
           <div className="backbutton">
@@ -201,6 +234,7 @@ export default function Menu() {
         </div>
         <div className="navright">
           <img src={account} alt="Account" />
+          <Gripline />
         </div>
       </div>
       <div className="storetop">
@@ -232,7 +266,11 @@ export default function Menu() {
       </div>
       <div className="addtocart">
         Total Amount: ₹ {totalAmount}
-        <button onClick={handleCheckout}>
+        <button
+          onClick={() => {
+            togglePopup(totalAmount, phoneNumber, gpayLink);
+          }}
+        >
           <p>Proceed To Checkout</p>
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </button>

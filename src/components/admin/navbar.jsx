@@ -3,6 +3,7 @@ import logo from "../../images/icons/logo.svg";
 import "../../styles/admin/navbar.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Gripline from "../common/gripline";
 export default function Navbar({ type }) {
   const BaseURL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ export default function Navbar({ type }) {
           )}
         </ul>
       </div>
+      <Gripline />
     </div>
   );
 }
