@@ -222,6 +222,9 @@ export default function Menu() {
         amount={totalAmount}
         phoneNumber={phoneNumber}
         gpay={gpayLink}
+        customerId={customerId}
+        cart={cart}
+        vendorId={userId.userId}
       />
       <div className="navbar">
         <div className="navleftlocation">
