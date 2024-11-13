@@ -96,8 +96,14 @@ export default function Orders() {
                 </p>
               </div>
             </div>
+
             <div className="ordercardbottom">
-              <p>Contact the Vendor At: {order.vendor.vendorPhone}</p>
+              <div className="ordercardbottomleft">
+                Contact the Vendor At: {order.vendor.vendorPhone}
+              </div>
+              <div className="ordercardbottomright">
+                Order Status: {order.orderStatus}{" "}
+              </div>
             </div>
           </div>
         ))}
