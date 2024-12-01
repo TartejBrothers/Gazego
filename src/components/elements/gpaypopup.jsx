@@ -62,7 +62,7 @@ export default function GpayPopup({
             <div className="amounttotalpopup">
               <p>Total Amount: </p> <p> {amount}</p>
             </div>
-            <img src={gpay} alt="Gpay Scanner" />
+            <img src={gpay} alt="Gpay Scanner" className="gpayscannerimage" />
             <p>
               Pay on this number and send a screenshot to this number for
               verification.
