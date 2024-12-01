@@ -67,6 +67,32 @@
 .ordercardbottomright {
   color: #f86f03;
 }
+.ordercardstatus {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.ordercardstatus h5 {
+  text-align: center;
+  width: 100%;
+  color: #f86f03;
+  font-size: 16px;
+}
+.ordercardstatusleft,
+.ordercardstatusright {
+  width: 50%;
+  border-radius: 5px;
+}
+.ordercardstatusleft {
+  border: 1px solid #ff1512;
+  color: #ff1512;
+}
+.ordercardstatusright {
+  border: 1px solid #42b244;
+  color: #42b244;
+}
 
 @media screen and (max-width: 1000px) {
   .orderdetailstop {

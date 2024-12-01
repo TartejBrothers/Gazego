@@ -24,6 +24,9 @@
 .gpaypopup a {
   text-decoration: none;
 }
+.gpayscannerimage {
+  height: 250px;
+}
 .gpaypopup a button {
   background-color: #42aa37;
   border: none;

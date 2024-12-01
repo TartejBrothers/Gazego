@@ -1,6 +1,7 @@
 .vendormain {
   background-color: #ffbe5d;
   min-height: 100dvh;
+  padding-bottom: 50px;
 }
 
 .vendorbody {

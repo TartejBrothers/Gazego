@@ -10,9 +10,11 @@ export default function ViewOrders() {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        `${baseURL}/api/orders/vendor/${userId.userId}`
+        `${baseURL}/api/orders/vendor/${userId}`
       );
+      console.log("User ID : ", userId);
       setOrders(response.data);
+      console.log("Orders:", orders);
       console.log("Orders:", response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -21,6 +23,19 @@ export default function ViewOrders() {
   useEffect(() => {
     fetchOrders();
   }, [userId.userId]);
+
+  const handleStatus = async (orderId, orderStatus) => {
+    try {
+      const body = {
+        orderId: orderId,
+        orderStatus: orderStatus,
+      };
+      await axios.post(`${baseURL}/api/order/update`, body);
+      fetchOrders();
+    } catch (error) {
+      console.error("Error accepting order:", error);
+    }
+  };
 
   return (
     <div className="vendormain">
@@ -32,6 +47,26 @@ export default function ViewOrders() {
         {orders.map((order) => (
           <div className="ordercard" key={order._id}>
             <hr />
+            {order.orderStatus === "Pending" ? (
+              <div className="ordercardstatus">
+                <div
+                  className="ordercardstatusleft"
+                  onClick={() => handleStatus(order._id, "Rejected")}
+                >
+                  Reject
+                </div>
+                <div
+                  className="ordercardstatusright"
+                  onClick={() => handleStatus(order._id, "Accepted")}
+                >
+                  Accept
+                </div>
+              </div>
+            ) : (
+              <div className="ordercardstatus">
+                <h5>Order: {order.orderStatus}</h5>
+              </div>
+            )}
             <div className="ordercardbody">
               <div className="orderdetailstop">
                 <p>
