@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true); // New state to handle loading
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const userId = useParams();
   const baseURL = process.env.REACT_APP_BASE_URL;
@@ -25,16 +25,17 @@ export default function Orders() {
     }
 
     try {
-      setLoading(true); // Set loading to true before fetching
+      setLoading(true);
       const response = await axios.get(
         `${baseURL}/api/orders/${userId.userId}`
       );
       setOrders(response.data);
       console.log("Orders:", response.data);
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching orders:", error);
     } finally {
-      setLoading(false); // Set loading to false after fetching
+      setLoading(false);
     }
   };
 
@@ -63,9 +64,9 @@ export default function Orders() {
       </div>
       <div className="storebody orderbody">
         {loading ? (
-          <p>Loading your orders...</p> // Show this while data is loading
+          <p>Loading your orders...</p>
         ) : orders.length === 0 ? (
-          <p>No orders found.</p> // Show this if no orders are returned
+          <p>No orders found.</p>
         ) : (
           orders.map((order) => (
             <div className="ordercard" key={order._id}>
