@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function Stores() {
   const [location, setLocation] = useState("");
+  const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const baseURL = process.env.REACT_APP_BASE_URL;
@@ -18,12 +19,15 @@ export default function Stores() {
   const getStores = async (storeLocation) => {
     const data = storeLocation ? { storeLocation } : {};
     try {
+      setLoading(true);
       const response = await axios.post(`${baseURL}/api/vendors`, data);
-
       setStores(response.data);
       console.log(response.data);
     } catch (error) {
+      setLoading(false);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,22 +66,26 @@ export default function Stores() {
         </div>
       </div>
       <div className="storebody">
-        <div className="storerow">
-          {filteredStores.map((store, index) => (
-            <div
-              className="storecardbox"
-              key={index}
-              onClick={() => NavigateToMenu(store.vendorId)}
-            >
-              <StoreCard
-                name={store.storeName}
-                description={store.storeDescription}
-                image={store.storeImage}
-                phone={store.vendorPhone}
-              />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <h2 style={{ padding: 10 }}>Loading...</h2>
+        ) : (
+          <div className="storerow">
+            {filteredStores.map((store, index) => (
+              <div
+                className="storecardbox"
+                key={index}
+                onClick={() => NavigateToMenu(store.vendorId)}
+              >
+                <StoreCard
+                  name={store.storeName}
+                  description={store.storeDescription}
+                  image={store.storeImage}
+                  phone={store.vendorPhone}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
