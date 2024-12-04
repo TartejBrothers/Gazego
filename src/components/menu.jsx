@@ -109,6 +109,7 @@ export default function Menu() {
               vendorId: userId.userId,
               items: cart,
               total: totalAmount,
+              orderStatus: "Pending",
             };
 
             const response = await axios.post(`${baseURL}/api/order`, data);
@@ -271,7 +272,8 @@ export default function Menu() {
         Total Amount: ₹ {totalAmount}
         <button
           onClick={() => {
-            togglePopup(totalAmount, phoneNumber, gpayLink);
+            handleCheckout();
+            // togglePopup(totalAmount, phoneNumber, gpayLink);
           }}
         >
           <p>Proceed To Checkout</p>
